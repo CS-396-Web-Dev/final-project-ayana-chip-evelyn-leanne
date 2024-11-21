@@ -14,7 +14,7 @@ const Tamagotchi = (props : Props) => {
 
   const imageStyle:React.CSSProperties = {
     position: 'absolute',
-    top: '50%',
+    top: '75%',
     left: '50%',
     transform: `translate(${props.index_x-112.5}px, ${props.index_y-112.5}px)`,
   };
