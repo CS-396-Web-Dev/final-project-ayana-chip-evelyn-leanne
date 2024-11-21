@@ -1,5 +1,5 @@
 import "./App.css"
-import Tamagotchi from "./components/Tamagotchi"
+import Tamagotchi from "./app/components/Tamagotchi"
 
 function App() {
   let name:string="Tamagotchi";
