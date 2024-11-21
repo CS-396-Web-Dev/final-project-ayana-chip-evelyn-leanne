@@ -6,13 +6,13 @@ import Slider from "./components/ui/Slider"
 import Tamagotchi from "./components/Tamagotchi"
 export default function Home() {
   const [percentage, setPercentage] = useState(25)
-  let name:string="Tamagotchi";
-  let hunger:number=100;
-  let happiness:number=100;
-  let cleanliness:number=100;
-  let growth:string="alive";
-  let index_x:number=0;
-  let index_y:number=0;
+  const [name, setName] = useState("Tamagotchi")
+  const [hunger, setHunger] = useState(100)
+  const [happiness, setHappiness] = useState(100)
+  const [cleanliness, setCleanliness] = useState(100)
+  const [growth, setGrowth] = useState("alive")
+  const [index_x, setIndex_x] = useState(0)
+  const [index_y, setIndex_y] = useState(0)
   return (
     <div className="w-screen h-screen flex justify-center items-center flex-col gap-4">
       <StatusBar percentage={percentage} statName="Health" />
