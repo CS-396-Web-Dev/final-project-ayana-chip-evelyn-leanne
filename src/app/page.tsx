@@ -5,6 +5,7 @@ import StatusBar from "./components/StatusBar"
 import Slider from "./components/ui/Slider"
 import Tamagotchi from "./components/Tamagotchi"
 import ActionsBar from "./components/ActionsBar"
+import TamagotchiSelector from "./components/TamagotchiSelector";
 
 export default function Home() {
   const [hungerPercentage, setHungerPercentage] = useState(100)
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen flex justify-center items-center flex-col gap-4">
+       <TamagotchiSelector />
       <StatusBar percentage={hungerPercentage} statName="Hunger" />
       <StatusBar percentage={happinessPercentage} statName="Happiness" />
       <StatusBar percentage={cleanlinessPercentage} statName="Cleanliness" />
