@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Tamagotchi from "./Tamagotchi";
-import TamagotchiTwo from "./TamagotchiTwo";
-import TamagotchiThree from "./TamagotchiThree";
 
 const TamagotchiSelector = () => {
   // State to track which Tamagotchi is currently selected
@@ -14,9 +12,9 @@ const TamagotchiSelector = () => {
       case 1:
         return <Tamagotchi name="Tammy" hunger={80} happiness={70} cleanliness={90} growth="child" index_x={0} index_y={0} />;
       case 2:
-        return <TamagotchiTwo name="Tommy" hunger={60} happiness={80} cleanliness={85} growth="adult" index_x={0} index_y={0} />;
+        return <Tamagotchi name="Tommy" hunger={60} happiness={80} cleanliness={85} growth="adult" index_x={0} index_y={0} />;
       case 3:
-        return <TamagotchiThree name="Tina" hunger={100} happiness={60} cleanliness={70} growth="baby" index_x={0} index_y={0} />;
+        return <Tamagotchi name="Tina" hunger={100} happiness={60} cleanliness={70} growth="baby" index_x={0} index_y={0} />;
       default:
         return null;
     }

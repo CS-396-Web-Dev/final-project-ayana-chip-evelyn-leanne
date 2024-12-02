@@ -22,12 +22,11 @@ export default function Home() {
   const [showNav, setShowNav] = useState(false)
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center flex-col gap-4">
-       <TamagotchiSelector />
+    <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 p-4">
       <StatusBar percentage={hungerPercentage} statName="Hunger" />
       <StatusBar percentage={happinessPercentage} statName="Happiness" />
       <StatusBar percentage={cleanlinessPercentage} statName="Cleanliness" />
-      <Tamagotchi
+      {/* <Tamagotchi
         name={name}
         hunger={hunger}
         happiness={happiness}
@@ -35,7 +34,8 @@ export default function Home() {
         growth={growth}
         index_x={index_x}
         index_y={index_y}
-      />
+      /> */}
+      <TamagotchiSelector />
       <button
         className="appButton"
         onClick={() => setShowNav(!showNav)}
