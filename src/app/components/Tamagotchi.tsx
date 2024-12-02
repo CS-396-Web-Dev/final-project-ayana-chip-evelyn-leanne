@@ -1,22 +1,23 @@
-// import { useState } from "react";
+import { useStatContext } from "./StatContext";
 
-interface Props {
-  name: string;
-  hunger: number;
-  happiness: number;
-  cleanliness: number;
-  growth: string;
-  index_x: number;
-  index_y: number;
-}
-const Tamagotchi = (props : Props) => {
-  console.log(props);
+// interface Props {
+//   name: string;
+//   hunger: number;
+//   happiness: number;
+//   cleanliness: number;
+//   growth: string;
+//   index_x: number;
+//   index_y: number;
+// }
+const Tamagotchi = () => {
+  const { name, hunger, happiness, cleanliness, growth, index_x, index_y } = useStatContext();
+  console.log(name, hunger, happiness, cleanliness, growth, index_x, index_y);
 
   const imageStyle:React.CSSProperties = {
     position: 'absolute',
     top: '75%',
     left: '50%',
-    transform: `translate(${props.index_x-112.5}px, ${props.index_y-112.5}px)`,
+    transform: `translate(${index_x-112.5}px, ${index_y-112.5}px)`,
   };
 
   return (

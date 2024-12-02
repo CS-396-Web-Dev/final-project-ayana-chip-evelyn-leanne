@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import Tamagotchi from "./Tamagotchi";
+import { useStatContext } from "./StatContext";
 
 const TamagotchiSelector = () => {
   // State to track which Tamagotchi is currently selected
-  const [selectedTamagotchi, setSelectedTamagotchi] = useState(1);
-
+  const { setName, setHunger,setHappiness, setCleanliness, setGrowth,} = useStatContext();
+  const tamagotchis = [{name: "Tammy", hunger: 80, happiness: 70, cleanliness: 90, growth: "child", }, 
+                       {name: "Tommy", hunger: 60, happiness: 90, cleanliness: 80, growth: "teenager", }, 
+                       {name: "Tina", hunger: 90, happiness: 60, cleanliness: 85, growth: "adult", }, ];
 
   // Render the corresponding Tamagotchi component
-  const renderTamagotchi = () => {
-    switch (selectedTamagotchi) {
-      case 1:
-        return <Tamagotchi name="Tammy" hunger={80} happiness={70} cleanliness={90} growth="child" index_x={0} index_y={0} />;
-      case 2:
-        return <Tamagotchi name="Tommy" hunger={60} happiness={80} cleanliness={85} growth="adult" index_x={0} index_y={0} />;
-      case 3:
-        return <Tamagotchi name="Tina" hunger={100} happiness={60} cleanliness={70} growth="baby" index_x={0} index_y={0} />;
-      default:
-        return null;
-    }
+  const handleSelect = (index: number) => {
+    const selected = tamagotchis[index];
+    setName(selected.name);
+    setHunger(selected.hunger);
+    setHappiness(selected.happiness);
+    setCleanliness(selected.cleanliness);
+    setGrowth(selected.growth);
   };
 
   return (
@@ -25,35 +24,17 @@ const TamagotchiSelector = () => {
       <h1 className="text-xl font-semibold text-gray-800">Select Your Tamagotchi</h1>
 
       {/* Buttons to switch Tamagotchis */}
-      <div className="flex gap-4">
-        <button
-          onClick={() => setSelectedTamagotchi(1)}
-          className={`px-4 py-2 rounded-md ${
-            selectedTamagotchi === 1 ? "bg-blue-600 text-white" : "bg-gray-200"
-          }`}
-        >
-          Tamagotchi One
-        </button>
-        <button
-          onClick={() => setSelectedTamagotchi(2)}
-          className={`px-4 py-2 rounded-md ${
-            selectedTamagotchi === 2 ? "bg-blue-600 text-white" : "bg-gray-200"
-          }`}
-        >
-          Tamagotchi Two
-        </button>
-        <button
-          onClick={() => setSelectedTamagotchi(3)}
-          className={`px-4 py-2 rounded-md ${
-            selectedTamagotchi === 3 ? "bg-blue-600 text-white" : "bg-gray-200"
-          }`}
-        >
-          Tamagotchi Three
-        </button>
-      </div>
-
-      {/* Render the selected Tamagotchi */}
-      <div className="tamagotchi-display mt-4">{renderTamagotchi()}</div>
+      <div className="flex gap-4 justify-center">
+        {tamagotchis.map((tamagotchi, index) => (
+          <button
+            key={index}
+            className="min-w-[6rem] p-2 bg-gray-200 rounded"
+            onClick={() => handleSelect(index)}
+          >
+            {tamagotchi.name}
+          </button>
+        ))}
+        </div>
     </div>
   );
 };

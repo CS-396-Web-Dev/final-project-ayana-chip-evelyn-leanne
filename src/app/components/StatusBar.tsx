@@ -1,11 +1,17 @@
+import {useStatContext} from "./StatContext"
+
 interface StatusBarProps {
   statName: string
-  percentage: number
 }
 
-export default function StatusBar({ statName, percentage }: StatusBarProps) {
+export default function StatusBar({ statName }: StatusBarProps) {
+  
+  const { hunger, happiness, cleanliness } = useStatContext();
+  const percentage =
+    statName === "Hunger" ? hunger :
+    statName === "Happiness" ? happiness :
+    cleanliness;
   const clampedPercentage = Math.max(0, Math.min(100, percentage))
-
   const getColor = (percent: number) => {
     if (percent >= 66) return "bg-gradient-to-r from-green-500 to-green-600"
     if (percent >= 33) return "bg-gradient-to-r from-yellow-500 to-yellow-600"
