@@ -34,14 +34,14 @@ export default function Home() {
         /> */}
         <TamagotchiSelector />
         <Tamagotchi />
-        <button
+        {/* <button
           className="appButton"
           onClick={() => setShowNav(!showNav)}
           onTouchStart={() => setShowNav(!showNav)}
         >
           Actions
-        </button>
-        <ActionsBar showing={showNav} />
+        </button> */}
+        <ActionsBar />
       </StatContextProvider>
     </div>
   )
