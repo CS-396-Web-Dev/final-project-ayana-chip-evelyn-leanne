@@ -12,7 +12,7 @@ const ActionsBar = () => {
   } = useTamagotchiContext()
 
   return (
-    <div className="outer">
+    <div className="outer z-50">
       <ul className="buttonList">
         <li className="indButton">
           <button
