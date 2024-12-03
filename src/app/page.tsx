@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import StatusBar from "./components/StatusBar"
-import Slider from "./components/ui/Slider"
 import Tamagotchi from "./components/Tamagotchi"
 import ActionsBar from "./components/ActionsBar"
-import TamagotchiSelector from "./components/TamagotchiSelector";
-import StatContextProvider from "./components/StatContext";
+import TamagotchiSelector from "./components/TamagotchiSelector"
+import StatContextProvider from "./components/StatContext"
+import Tamagotchi3D from "./components/Tamagotchi3D"
 
 export default function Home() {
   // const [hungerPercentage, setHungerPercentage] = useState(100)
@@ -17,14 +17,12 @@ export default function Home() {
   return (
     <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 p-4">
       <StatContextProvider>
-        {/* <StatusBar percentage={hungerPercentage} statName="Hunger" />
-        <StatusBar percentage={happinessPercentage} statName="Happiness" />
-        <StatusBar percentage={cleanlinessPercentage} statName="Cleanliness" /> */}
+        <TamagotchiSelector />
         <StatusBar statName="Hunger" />
         <StatusBar statName="Happiness" />
         <StatusBar statName="Cleanliness" />
-        <TamagotchiSelector />
-        <Tamagotchi />
+        {/* <Tamagotchi /> */}
+        <Tamagotchi3D modelUrl="Dragon.gltf" />
         <ActionsBar />
       </StatContextProvider>
     </div>
