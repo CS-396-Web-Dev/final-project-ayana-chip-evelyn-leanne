@@ -1,4 +1,3 @@
-import { useStatContext } from "./StatContext"
 import { useTamagotchiContext } from "./TamagotchiContext"
 
 const ActionsBar = () => {
