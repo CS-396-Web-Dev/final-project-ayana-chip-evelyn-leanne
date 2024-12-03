@@ -1,11 +1,10 @@
 import React, { useState } from "react"
-import Tamagotchi from "./Tamagotchi"
-import { useStatContext } from "./StatContext"
+import { useTamagotchiContext } from "./TamagotchiContext"
 
 const TamagotchiSelector = () => {
   // State to track which Tamagotchi is currently selected
   const { setName, setHunger, setHappiness, setCleanliness, setGrowth } =
-    useStatContext()
+    useTamagotchiContext()
 
   const tamagotchis = [
     {
