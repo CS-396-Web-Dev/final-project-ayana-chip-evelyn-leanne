@@ -1,5 +1,6 @@
 import { useStatContext } from "./StatContext";
 
+// 2D tomogatchi
 const Tamagotchi = () => {
   const { name, hunger, happiness, cleanliness, growth, index_x, index_y } = useStatContext();
   console.log(name, hunger, happiness, cleanliness, growth, index_x, index_y);
