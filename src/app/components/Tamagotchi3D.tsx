@@ -6,6 +6,8 @@ import { useGLTF, useAnimations, OrbitControls } from "@react-three/drei"
 import { useEffect } from "react"
 import * as THREE from "three"
 
+import { useTamagotchiContext } from "./TamagotchiContext"
+
 // Define the props for the Model component
 interface ModelProps {
   url: string
@@ -25,12 +27,10 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
       groupRef.current.position.set(-center.x, -center.y, -center.z)
     }
 
-    // Play the default "Flying_Idle" animation
     if (actions?.Flying_Idle) {
       actions.Flying_Idle.play()
     }
 
-    // Provide the function to play animations dynamically
     playAnimation((animationName: string) => {
       if (actions) {
         Object.values(actions).forEach((action) => action?.stop())
@@ -51,16 +51,11 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
   )
 }
 
-// Define the props for the Tamagotchi3D component
-interface Tamagotchi3DProps {
-  modelUrl: string
-}
+const Tamagotchi3D = forwardRef((props, ref) => {
+  const { modelName } = useTamagotchiContext()
 
-const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
-  const { modelUrl } = props
   const playAnimation = useRef<(animationName: string) => void>(() => {})
 
-  // Expose the `triggerAnimation` function to parent components
   useImperativeHandle(ref, () => ({
     triggerAnimation: (animationName: string) => {
       if (playAnimation.current) {
@@ -75,7 +70,7 @@ const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
         <directionalLight intensity={2} position={[0, 2, 0]} />
         <ambientLight intensity={2} />
         <Model
-          url={modelUrl}
+          url={`${modelName}.gltf`}
           playAnimation={(anim) => {
             playAnimation.current = anim
           }}
