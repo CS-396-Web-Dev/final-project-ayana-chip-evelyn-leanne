@@ -17,13 +17,13 @@ export default function Home() {
   }
 
   return (
-    <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 p-4">
+    <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 p-4 pt-10">
       <TamagotchiContextProvider initialData={initialPetData}>
         <TamagotchiSelector />
+        <ActionsBar />
         <StatusBar statType={StatType.Hunger} />
         <StatusBar statType={StatType.Happiness} />
         <StatusBar statType={StatType.Cleanliness} />
-        <ActionsBar />
       </TamagotchiContextProvider>
 
       <Tamagotchi3D modelUrl={`${initialPetData.modelName}.gltf`} />

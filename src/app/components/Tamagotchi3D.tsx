@@ -21,7 +21,7 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
       // Compute the bounding box and center the model
       const box = new THREE.Box3().setFromObject(groupRef.current)
       const center = box.getCenter(new THREE.Vector3())
-      groupRef.current.position.set(-center.x, -center.y + 1, -center.z)
+      groupRef.current.position.set(-center.x, -center.y + 0.25, -center.z)
     }
 
     if (actions?.Flying_Idle) {
@@ -70,7 +70,7 @@ const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
         orthographic
         camera={{ zoom: 100, position: [0, 0, 10], fov: 60 }}
       >
-        <directionalLight intensity={2} position={[0, 2, 0]} />
+        <directionalLight intensity={5} position={[0, 2, 0]} />
         <ambientLight intensity={2} />
         <Model
           url={modelUrl}
