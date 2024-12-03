@@ -23,24 +23,8 @@ export default function Home() {
         <StatusBar statName="Hunger" />
         <StatusBar statName="Happiness" />
         <StatusBar statName="Cleanliness" />
-        {/* <Tamagotchi
-          name={name}
-          hunger={hunger}
-          happiness={happiness}
-          cleanliness={cleanliness}
-          growth={growth}
-          index_x={index_x}
-          index_y={index_y}
-        /> */}
         <TamagotchiSelector />
         <Tamagotchi />
-        {/* <button
-          className="appButton"
-          onClick={() => setShowNav(!showNav)}
-          onTouchStart={() => setShowNav(!showNav)}
-        >
-          Actions
-        </button> */}
         <ActionsBar />
       </StatContextProvider>
     </div>
