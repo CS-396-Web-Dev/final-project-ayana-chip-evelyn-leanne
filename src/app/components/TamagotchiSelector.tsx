@@ -103,7 +103,7 @@ const TamagotchiSelector = ({
   }, [currentIndex])
 
   return (
-    <div className="w-full max-w-xl mx-auto px-4">
+    <div className="w-full max-w-xl px-4 z-50">
       <div className="relative w-full bg-slate-100 border-4 border-black rounded-xl shadow-lg overflow-hidden">
         <button
           onClick={() => navigate("prev")}

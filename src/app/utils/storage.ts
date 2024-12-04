@@ -24,9 +24,19 @@ export const getTamagotchiById = (id: number): Tamagotchi | undefined => {
   return tamagotchis.find((tamagotchi) => tamagotchi.id === id)
 }
 
-export const addTamagotchi = (newTamagotchi: Tamagotchi): void => {
+export const addTamagotchi = (newTamagotchi: Partial<Tamagotchi>): void => {
   const tamagotchis = getStoredTamagotchis()
-  const updatedTamagotchis = [...tamagotchis, newTamagotchi]
+  const updatedTamagotchis = [
+    ...tamagotchis,
+    {
+      ...newTamagotchi,
+      id: tamagotchis.length + 1,
+      hunger: 100,
+      happiness: 100,
+      cleanliness: 100,
+      growth: "Base",
+    },
+  ]
   localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedTamagotchis))
 }
 
