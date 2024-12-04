@@ -18,6 +18,7 @@ interface TamagotchiState {
   happiness: number
   cleanliness: number
   growth: string
+  modelName: string
 }
 
 interface TamagotchiContextType extends TamagotchiState {
@@ -26,6 +27,7 @@ interface TamagotchiContextType extends TamagotchiState {
   setHappiness: Dispatch<SetStateAction<number>>
   setCleanliness: Dispatch<SetStateAction<number>>
   setGrowth: Dispatch<SetStateAction<string>>
+  setModelName: Dispatch<SetStateAction<string>>
 }
 
 const TamagotchiContext = createContext<TamagotchiContextType | undefined>(
@@ -51,6 +53,7 @@ export default function TamagotchiContextProvider({
   const [happiness, setHappiness] = useState(initialData.happiness)
   const [cleanliness, setCleanliness] = useState(initialData.cleanliness)
   const [growth, setGrowth] = useState(initialData.growth)
+  const [modelName, setModelName] = useState(initialData.modelName)
 
   return (
     <TamagotchiContext.Provider
@@ -65,6 +68,8 @@ export default function TamagotchiContextProvider({
         setCleanliness,
         growth,
         setGrowth,
+        modelName,
+        setModelName,
       }}
     >
       {children}

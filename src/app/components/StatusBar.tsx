@@ -48,7 +48,7 @@ export default function StatusBar({ statType }: StatusBarProps) {
   }
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full md:max-w-xl max-w-md">
       <div className="h-12 rounded-2xl border-4 border-black bg-white flex items-center overflow-hidden relative">
         <div
           className={`h-full flex items-center transition-all duration-300 ease-out ${getColor(
@@ -56,7 +56,7 @@ export default function StatusBar({ statType }: StatusBarProps) {
           )}`}
           style={{ width: `${clampedPercentage}%` }}
         >
-          <div className="flex items-center justify-center w-12 h-12 text-white">
+          <div className="flex absolute items-center justify-center w-12 h-12 text-white">
             <div className="bg-slate-800 p-1 rounded-md">
               <Icon className="w-5 h-5" />
             </div>

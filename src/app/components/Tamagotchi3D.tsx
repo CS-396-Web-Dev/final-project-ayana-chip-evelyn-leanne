@@ -17,6 +17,7 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
   const { actions } = useAnimations(animations, groupRef)
 
   useEffect(() => {
+    console.log(groupRef)
     if (groupRef.current) {
       // Compute the bounding box and center the model
       const box = new THREE.Box3().setFromObject(groupRef.current)
