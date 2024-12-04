@@ -8,23 +8,16 @@ import * as THREE from "three"
 
 interface ModelProps {
   url: string
+  yPos: number
   playAnimation: (anim: (animationName: string) => void) => void
 }
 
-const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
+const Model: React.FC<ModelProps> = ({ url, yPos, playAnimation }) => {
   const { scene, animations } = useGLTF(url)
   const groupRef = useRef<THREE.Group>(null)
   const { actions } = useAnimations(animations, groupRef)
 
   useEffect(() => {
-    console.log(groupRef)
-    if (groupRef.current) {
-      // Compute the bounding box and center the model
-      const box = new THREE.Box3().setFromObject(groupRef.current)
-      const center = box.getCenter(new THREE.Vector3())
-      groupRef.current.position.set(-center.x, -center.y + 0.25, -center.z)
-    }
-
     if (actions?.Flying_Idle) {
       actions.Flying_Idle.play()
     }
@@ -43,7 +36,7 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
   }, [scene, actions, playAnimation])
 
   return (
-    <group ref={groupRef}>
+    <group position={[0, yPos, 0]} ref={groupRef}>
       <primitive object={scene} />
     </group>
   )
@@ -51,10 +44,11 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
 
 interface Tamagotchi3DProps {
   modelUrl: string
+  yPos: number
 }
 
 const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
-  const { modelUrl } = props
+  const { modelUrl, yPos } = props
   const playAnimation = useRef<(animationName: string) => void>(() => {})
 
   useImperativeHandle(ref, () => ({
@@ -75,6 +69,7 @@ const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
         <ambientLight intensity={2} />
         <Model
           url={modelUrl}
+          yPos={yPos}
           playAnimation={(anim) => {
             playAnimation.current = anim
           }}

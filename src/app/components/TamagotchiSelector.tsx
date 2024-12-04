@@ -3,30 +3,39 @@ import { useTamagotchiContext } from "./TamagotchiContext"
 
 const TamagotchiSelector = () => {
   // State to track which Tamagotchi is currently selected
-  const { setName, setHunger, setHappiness, setCleanliness, setGrowth } =
-    useTamagotchiContext()
+  const {
+    setName,
+    setHunger,
+    setHappiness,
+    setCleanliness,
+    setGrowth,
+    setModelName,
+  } = useTamagotchiContext()
 
   const tamagotchis = [
     {
       name: "Tammy",
       hunger: 80,
-      happiness: 70,
+      happiness: 50,
       cleanliness: 90,
-      growth: "child",
+      growth: "Base",
+      modelName: "Dragon",
     },
     {
       name: "Tommy",
       hunger: 60,
-      happiness: 90,
-      cleanliness: 80,
-      growth: "teenager",
+      happiness: 75,
+      cleanliness: 30,
+      growth: "Evolved",
+      modelName: "Dragon_Evolved",
     },
     {
       name: "Tina",
-      hunger: 90,
-      happiness: 60,
-      cleanliness: 85,
-      growth: "adult",
+      hunger: 25,
+      happiness: 10,
+      cleanliness: 50,
+      growth: "Evolved",
+      modelName: "Armabee_Evolved",
     },
   ]
 
@@ -38,6 +47,7 @@ const TamagotchiSelector = () => {
     setHappiness(selected.happiness)
     setCleanliness(selected.cleanliness)
     setGrowth(selected.growth)
+    setModelName(selected.modelName)
   }
 
   return (
