@@ -16,7 +16,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 }) => (
   <button
     onClick={onClick}
-    className="flex-grow font-bold bg-slate-100 hover:bg-slate-300 text-gray-900 hover:text-gray-950 md:p-4 p-2 rounded-md transition-colors lg:text-2xl text-xl outline outline-4"
+    className="flex-grow font-bold bg-slate-100 hover:bg-slate-200 text-gray-900 hover:text-gray-950 md:p-4 p-2 rounded-md transition-all lg:text-2xl text-xl outline outline-4 shadow-xl hover:-translate-y-2"
   >
     <div className="flex items-center justify-center gap-2">
       {icon}

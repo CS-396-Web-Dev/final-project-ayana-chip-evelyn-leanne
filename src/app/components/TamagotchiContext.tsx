@@ -13,6 +13,7 @@ interface TamagotchiProviderProps {
 }
 
 interface TamagotchiState {
+  id: number
   name: string
   hunger: number
   happiness: number
@@ -22,6 +23,7 @@ interface TamagotchiState {
 }
 
 interface TamagotchiContextType extends TamagotchiState {
+  setId: Dispatch<SetStateAction<number>>
   setName: Dispatch<SetStateAction<string>>
   setHunger: Dispatch<SetStateAction<number>>
   setHappiness: Dispatch<SetStateAction<number>>
@@ -48,6 +50,7 @@ export default function TamagotchiContextProvider({
   children,
   initialData,
 }: TamagotchiProviderProps) {
+  const [id, setId] = useState(initialData.id)
   const [name, setName] = useState(initialData.name)
   const [hunger, setHunger] = useState(initialData.hunger)
   const [happiness, setHappiness] = useState(initialData.happiness)
@@ -58,6 +61,8 @@ export default function TamagotchiContextProvider({
   return (
     <TamagotchiContext.Provider
       value={{
+        id,
+        setId,
         name,
         setName,
         hunger,

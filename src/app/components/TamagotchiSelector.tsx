@@ -1,41 +1,34 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import {
+  useState,
+  useEffect,
+  useCallback,
+  Dispatch,
+  SetStateAction,
+} from "react"
 import { useTamagotchiContext } from "./TamagotchiContext"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { getTamagotchis, Tamagotchi, updateTamagotchi } from "../utils/storage"
 
-const tamagotchis = [
-  {
-    id: 1,
-    name: "Tammy",
-    hunger: 80,
-    happiness: 50,
-    cleanliness: 90,
-    growth: "Base",
-    modelName: "Dragon",
-  },
-  {
-    id: 2,
-    name: "Tommy",
-    hunger: 60,
-    happiness: 75,
-    cleanliness: 30,
-    growth: "Evolved",
-    modelName: "Dragon_Evolved",
-  },
-  {
-    id: 3,
-    name: "Tina",
-    hunger: 25,
-    happiness: 10,
-    cleanliness: 50,
-    growth: "Evolved",
-    modelName: "Armabee_Evolved",
-  },
-]
+interface TamagotchiSelectorProps {
+  tamagotchis: Tamagotchi[]
+  setTamagotchis: Dispatch<SetStateAction<Tamagotchi[]>>
+}
 
-const TamagotchiCarousel = () => {
+const TamagotchiSelector = ({
+  tamagotchis,
+  setTamagotchis,
+}: TamagotchiSelectorProps) => {
   const {
+    id,
+    name,
+    hunger,
+    happiness,
+    cleanliness,
+    growth,
+    modelName,
+    setId,
     setName,
     setHunger,
     setHappiness,
@@ -61,7 +54,19 @@ const TamagotchiCarousel = () => {
   )
 
   const handleSelect = (index: number) => {
+    updateTamagotchi(id, {
+      name,
+      hunger,
+      happiness,
+      cleanliness,
+      growth,
+      modelName,
+    })
+
+    setTamagotchis(getTamagotchis())
+
     const selected = tamagotchis[index]
+    setId(selected.id)
     setName(selected.name)
     setHunger(selected.hunger)
     setHappiness(selected.happiness)
@@ -99,7 +104,7 @@ const TamagotchiCarousel = () => {
 
   return (
     <div className="w-full max-w-xl mx-auto px-4">
-      <div className="relative w-full bg-white border-4 border-black rounded-xl shadow-lg overflow-hidden">
+      <div className="relative w-full bg-slate-100 border-4 border-black rounded-xl shadow-lg overflow-hidden">
         <button
           onClick={() => navigate("prev")}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/90 border-2 border-black shadow-md hover:bg-slate-200 transition-colors"
@@ -150,4 +155,4 @@ const TamagotchiCarousel = () => {
   )
 }
 
-export default TamagotchiCarousel
+export default TamagotchiSelector
