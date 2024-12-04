@@ -13,7 +13,7 @@ export default function Home() {
     hunger: 80,
     happiness: 50,
     cleanliness: 90,
-    growth: "Baby",
+    growth: "Base",
     modelName: "Dragon",
   }
 
@@ -21,7 +21,7 @@ export default function Home() {
     <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 p-10 py-16">
       <TamagotchiContextProvider initialData={initialPetData}>
         <TamagotchiSelector />
-        <div className="flex w-5/6 flex-col md:flex-row items-center justify-between h-full gap-8">
+        <div className="flex md:w-5/6 w-full flex-col md:flex-row items-center justify-between h-full gap-8">
           <div className="w-full md:w-1/2 h-full">
             <Tamagotchi />
           </div>

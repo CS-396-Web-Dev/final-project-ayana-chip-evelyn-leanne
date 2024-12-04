@@ -61,7 +61,7 @@ const TamagotchiSelector = () => {
         {tamagotchis.map((tamagotchi, index) => (
           <button
             key={index}
-            className="min-w-[6rem] p-2 bg-gray-200 rounded"
+            className="flex-grow font-bold bg-slate-100 hover:bg-slate-300 text-gray-900 hover:text-gray-950 md:p-2 p-1 rounded-md transition-colors lg:text-xl text-lg outline outline-4"
             onClick={() => handleSelect(index)}
           >
             {tamagotchi.name}
