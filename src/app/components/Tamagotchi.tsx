@@ -26,6 +26,11 @@ const Tamagotchi = () => {
       ) : (
         <></>
       )}
+      {modelName == "Tombstone" ? (
+        <Tamagotchi3D modelUrl={`Tombstone.gltf`} />
+      ) : (
+        <></>
+      )}
     </>
   )
 }

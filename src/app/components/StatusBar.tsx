@@ -12,9 +12,13 @@ interface StatusBarProps {
 }
 
 export default function StatusBar({ statType }: StatusBarProps) {
-  const { hunger, happiness, cleanliness } = useTamagotchiContext()
+  const { hunger, happiness, cleanliness, growth } = useTamagotchiContext()
 
   const percentage = (() => {
+    if (growth == "Dead") {
+      return 0
+    }
+
     switch (statType) {
       case StatType.Hunger:
         return hunger

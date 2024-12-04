@@ -14,11 +14,15 @@ import { getTamagotchis, Tamagotchi, updateTamagotchi } from "../utils/storage"
 interface TamagotchiSelectorProps {
   tamagotchis: Tamagotchi[]
   setTamagotchis: Dispatch<SetStateAction<Tamagotchi[]>>
+  currentIndex: number
+  setCurrentIndex: Dispatch<SetStateAction<number>>
 }
 
 const TamagotchiSelector = ({
   tamagotchis,
   setTamagotchis,
+  currentIndex,
+  setCurrentIndex,
 }: TamagotchiSelectorProps) => {
   const {
     id,
@@ -37,7 +41,7 @@ const TamagotchiSelector = ({
     setModelName,
   } = useTamagotchiContext()
 
-  const [currentIndex, setCurrentIndex] = useState(0)
+  // const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [direction, setDirection] = useState<"prev" | "next" | null>(null)

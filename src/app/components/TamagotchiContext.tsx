@@ -5,11 +5,14 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react"
+import { updateTamagotchi } from "../utils/storage"
 
 interface TamagotchiProviderProps {
   children: ReactNode
   initialData: TamagotchiState
+  refreshTamagotchis: () => void
 }
 
 interface TamagotchiState {
@@ -49,14 +52,37 @@ export const useTamagotchiContext = (): TamagotchiContextType => {
 export default function TamagotchiContextProvider({
   children,
   initialData,
+  refreshTamagotchis,
 }: TamagotchiProviderProps) {
   const [id, setId] = useState(initialData.id)
   const [name, setName] = useState(initialData.name)
-  const [hunger, setHunger] = useState(initialData.hunger)
+  const [hunger, setHungerBase] = useState(initialData.hunger)
   const [happiness, setHappiness] = useState(initialData.happiness)
   const [cleanliness, setCleanliness] = useState(initialData.cleanliness)
   const [growth, setGrowth] = useState(initialData.growth)
   const [modelName, setModelName] = useState(initialData.modelName)
+
+  const setHunger = (newHunger: SetStateAction<number>) => {
+    setHungerBase(newHunger)
+
+    if (newHunger == 0) {
+      setGrowth("Dead")
+      setModelName("Tombstone")
+    }
+  }
+
+  useEffect(() => {
+    updateTamagotchi(id, {
+      name,
+      hunger,
+      happiness,
+      cleanliness,
+      growth,
+      modelName,
+    })
+
+    refreshTamagotchis()
+  }, [name, hunger, happiness, cleanliness, growth, modelName])
 
   return (
     <TamagotchiContext.Provider
