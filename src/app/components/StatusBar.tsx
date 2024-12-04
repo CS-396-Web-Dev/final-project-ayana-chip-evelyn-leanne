@@ -1,5 +1,6 @@
 import { Smile, ShowerHead, Utensils } from "lucide-react"
 import { useTamagotchiContext } from "./TamagotchiContext"
+import { useEffect } from "react"
 
 export enum StatType {
   Hunger = "Hunger",
@@ -11,8 +12,30 @@ interface StatusBarProps {
   statType: StatType
 }
 
+const drainRate = 0.1
+
 export default function StatusBar({ statType }: StatusBarProps) {
-  const { hunger, happiness, cleanliness, growth } = useTamagotchiContext()
+  const {
+    setHunger,
+    hunger,
+    setHappiness,
+    happiness,
+    setCleanliness,
+    cleanliness,
+    growth,
+  } = useTamagotchiContext()
+
+  useEffect(() => {
+    if (growth === "Dead") return
+
+    const interval = setInterval(() => {
+      setHunger((prev) => Math.max(0, prev - drainRate))
+      setHappiness((prev) => Math.max(0, prev - drainRate))
+      setCleanliness((prev) => Math.max(0, prev - drainRate))
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [growth, setHunger, setHappiness, setCleanliness])
 
   const percentage = (() => {
     if (growth == "Dead") {
@@ -68,7 +91,7 @@ export default function StatusBar({ statType }: StatusBarProps) {
         </div>
         <div className="absolute right-3 font-bold text-white">
           <div className="bg-slate-800 px-1 rounded-md">
-            {clampedPercentage}%
+            {`${Math.round(clampedPercentage)}`}%
           </div>
         </div>
       </div>
