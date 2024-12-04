@@ -13,7 +13,7 @@ const ActionsBar = () => {
   } = useTamagotchiContext()
 
   return (
-    <div className="flex items-center justify-center gap-4 mt-4">
+    <div className="flex items-center justify-center gap-4">
       <div className="flex w-56 bg-slate-600 rounded-lg p-2 gap-2">
         <button
           onClick={() => {

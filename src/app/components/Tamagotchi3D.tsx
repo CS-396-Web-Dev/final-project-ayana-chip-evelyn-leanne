@@ -68,7 +68,7 @@ const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
     <div className="h-full w-full">
       <Canvas
         orthographic
-        camera={{ zoom: 100, position: [0, 0, 10], fov: 60 }}
+        camera={{ zoom: 140, position: [0, 0, 10], fov: 60 }}
       >
         <directionalLight intensity={5} position={[0, 2, 0]} />
         <ambientLight intensity={2} />
