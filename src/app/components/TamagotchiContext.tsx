@@ -23,6 +23,7 @@ interface TamagotchiState {
   cleanliness: number
   growth: string
   modelName: string
+  xp: number
 }
 
 interface TamagotchiContextType extends TamagotchiState {
@@ -33,6 +34,7 @@ interface TamagotchiContextType extends TamagotchiState {
   setCleanliness: Dispatch<SetStateAction<number>>
   setGrowth: Dispatch<SetStateAction<string>>
   setModelName: Dispatch<SetStateAction<string>>
+  setXP: Dispatch<SetStateAction<number>>
 }
 
 const TamagotchiContext = createContext<TamagotchiContextType | undefined>(
@@ -56,20 +58,32 @@ export default function TamagotchiContextProvider({
 }: TamagotchiProviderProps) {
   const [id, setId] = useState(initialData.id)
   const [name, setName] = useState(initialData.name)
-  const [hunger, setHungerBase] = useState(initialData.hunger)
+  const [hunger, setHunger] = useState(initialData.hunger)
   const [happiness, setHappiness] = useState(initialData.happiness)
   const [cleanliness, setCleanliness] = useState(initialData.cleanliness)
   const [growth, setGrowth] = useState(initialData.growth)
   const [modelName, setModelName] = useState(initialData.modelName)
+  const [xp, setXP] = useState(initialData.xp)
 
-  const setHunger = (newHunger: SetStateAction<number>) => {
-    setHungerBase(newHunger)
-
-    if (newHunger == 0) {
+  useEffect(() => {
+    if (hunger == 0) {
+      setHappiness(0)
+      setCleanliness(0)
+      setXP(0)
       setGrowth("Dead")
       setModelName("Tombstone")
     }
-  }
+  }, [hunger])
+
+  useEffect(() => {
+    if (xp == 100) {
+      if (modelName !== "Tombstone" && growth !== "Evolved") {
+        setModelName(modelName + "_Evolved")
+      }
+
+      setGrowth("Evolved")
+    }
+  }, [xp])
 
   useEffect(() => {
     updateTamagotchi(id, {
@@ -79,10 +93,11 @@ export default function TamagotchiContextProvider({
       cleanliness,
       growth,
       modelName,
+      xp,
     })
 
     refreshTamagotchis()
-  }, [name, hunger, happiness, cleanliness, growth, modelName])
+  }, [name, hunger, happiness, cleanliness, growth, modelName, xp])
 
   return (
     <TamagotchiContext.Provider
@@ -101,6 +116,8 @@ export default function TamagotchiContextProvider({
         setGrowth,
         modelName,
         setModelName,
+        xp,
+        setXP,
       }}
     >
       {children}

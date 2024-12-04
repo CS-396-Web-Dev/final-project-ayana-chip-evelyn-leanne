@@ -6,6 +6,7 @@ export interface Tamagotchi {
   cleanliness: number
   growth: string
   modelName: string
+  xp: number
 }
 
 const STORAGE_KEY = "tamagotchis"

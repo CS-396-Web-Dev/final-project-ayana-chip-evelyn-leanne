@@ -1,4 +1,4 @@
-import { Smile, ShowerHead, Utensils } from "lucide-react"
+import { Smile, ShowerHead, Utensils, ChevronUp } from "lucide-react"
 import { useTamagotchiContext } from "./TamagotchiContext"
 import { useEffect } from "react"
 
@@ -6,6 +6,7 @@ export enum StatType {
   Hunger = "Hunger",
   Happiness = "Happiness",
   Cleanliness = "Cleanliness",
+  XP = "XP",
 }
 
 interface StatusBarProps {
@@ -13,6 +14,7 @@ interface StatusBarProps {
 }
 
 const drainRate = 0.1
+const xpRate = 1
 
 export default function StatusBar({ statType }: StatusBarProps) {
   const {
@@ -22,20 +24,29 @@ export default function StatusBar({ statType }: StatusBarProps) {
     happiness,
     setCleanliness,
     cleanliness,
+    xp,
+    setXP,
     growth,
   } = useTamagotchiContext()
 
   useEffect(() => {
     if (growth === "Dead") return
 
-    const interval = setInterval(() => {
+    const drainInterval = setInterval(() => {
       setHunger((prev) => Math.max(0, prev - drainRate))
       setHappiness((prev) => Math.max(0, prev - drainRate))
       setCleanliness((prev) => Math.max(0, prev - drainRate))
     }, 1000)
 
-    return () => clearInterval(interval)
-  }, [growth, setHunger, setHappiness, setCleanliness])
+    const xpInterval = setInterval(() => {
+      setXP((prev) => Math.min(100, prev + xpRate))
+    }, 1000)
+
+    return () => {
+      clearInterval(drainInterval)
+      clearInterval(xpInterval)
+    }
+  }, [growth, setHunger, setHappiness, setCleanliness, setXP])
 
   const percentage = (() => {
     if (growth == "Dead") {
@@ -49,6 +60,8 @@ export default function StatusBar({ statType }: StatusBarProps) {
         return happiness
       case StatType.Cleanliness:
         return cleanliness
+      case StatType.XP:
+        return xp
       default:
         return 0
     }
@@ -62,6 +75,8 @@ export default function StatusBar({ statType }: StatusBarProps) {
         return Smile
       case StatType.Cleanliness:
         return ShowerHead
+      case StatType.XP:
+        return ChevronUp
       default:
         return Utensils
     }

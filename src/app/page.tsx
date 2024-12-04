@@ -35,6 +35,7 @@ export default function Home() {
         happiness: 100,
         cleanliness: 100,
         growth: "Base",
+        xp: 0,
       },
     ])
 
@@ -71,6 +72,7 @@ export default function Home() {
               <StatusBar statType={StatType.Hunger} />
               <StatusBar statType={StatType.Happiness} />
               <StatusBar statType={StatType.Cleanliness} />
+              <StatusBar statType={StatType.XP} />
             </div>
           </div>
           <ActionsBar />
