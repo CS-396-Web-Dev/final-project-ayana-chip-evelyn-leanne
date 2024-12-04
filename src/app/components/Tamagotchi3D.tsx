@@ -8,11 +8,10 @@ import * as THREE from "three"
 
 interface ModelProps {
   url: string
-  yPos: number
   playAnimation: (anim: (animationName: string) => void) => void
 }
 
-const Model: React.FC<ModelProps> = ({ url, yPos, playAnimation }) => {
+const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
   const { size } = useThree()
 
   const { scene, animations } = useGLTF(url)
@@ -60,11 +59,10 @@ const Model: React.FC<ModelProps> = ({ url, yPos, playAnimation }) => {
 
 interface Tamagotchi3DProps {
   modelUrl: string
-  yPos: number
 }
 
 const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
-  const { modelUrl, yPos } = props
+  const { modelUrl } = props
   const playAnimation = useRef<(animationName: string) => void>(() => {})
 
   useImperativeHandle(ref, () => ({
@@ -85,7 +83,6 @@ const Tamagotchi3D = forwardRef((props: Tamagotchi3DProps, ref) => {
         <ambientLight intensity={2} />
         <Model
           url={modelUrl}
-          yPos={yPos}
           playAnimation={(anim) => {
             playAnimation.current = anim
           }}
