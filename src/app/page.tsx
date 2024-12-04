@@ -18,7 +18,7 @@ export default function Home() {
   }
 
   return (
-    <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 p-10 py-16">
+    <div className="w-screen h-screen flex justify-start items-center flex-col gap-8 px-10 pb-16 pt-12">
       <TamagotchiContextProvider initialData={initialPetData}>
         <TamagotchiSelector />
         <div className="flex md:w-5/6 w-full flex-col md:flex-row items-center justify-between h-full gap-8">
