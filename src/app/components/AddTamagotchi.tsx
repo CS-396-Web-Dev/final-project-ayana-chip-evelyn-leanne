@@ -14,7 +14,7 @@ interface AddButtonProps {
   onClick: () => void
 }
 
-const tamagotchiVariants = ["Armabee", "Dragon"]
+const tamagotchiVariants = ["Alpaking", "Armabee", "Dragon", "Glub", "Goleling"]
 
 const AddModal = ({ isOpen, onClose, refreshTamagotchis }: AddModalProps) => {
   const [name, setName] = useState("")
@@ -24,6 +24,7 @@ const AddModal = ({ isOpen, onClose, refreshTamagotchis }: AddModalProps) => {
     addTamagotchi({
       name,
       modelName: variant,
+      xp: 0,
     })
 
     refreshTamagotchis()

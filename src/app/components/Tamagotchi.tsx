@@ -26,6 +26,32 @@ const Tamagotchi = () => {
       ) : (
         <></>
       )}
+      {modelName == "Alpaking" ? (
+        <Tamagotchi3D modelUrl={`Alpaking.gltf`} />
+      ) : (
+        <></>
+      )}
+      {modelName == "Alpaking_Evolved" ? (
+        <Tamagotchi3D modelUrl={`Alpaking_Evolved.gltf`} />
+      ) : (
+        <></>
+      )}
+      {modelName == "Glub" ? <Tamagotchi3D modelUrl={`Glub.gltf`} /> : <></>}
+      {modelName == "Glub_Evolved" ? (
+        <Tamagotchi3D modelUrl={`Glub_Evolved.gltf`} />
+      ) : (
+        <></>
+      )}
+      {modelName == "Goleling" ? (
+        <Tamagotchi3D modelUrl={`Goleling.gltf`} />
+      ) : (
+        <></>
+      )}
+      {modelName == "Goleling_Evolved" ? (
+        <Tamagotchi3D modelUrl={`Goleling_Evolved.gltf`} />
+      ) : (
+        <></>
+      )}
       {modelName == "Tombstone" ? (
         <Tamagotchi3D modelUrl={`Tombstone.gltf`} />
       ) : (

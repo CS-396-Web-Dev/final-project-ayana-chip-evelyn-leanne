@@ -39,6 +39,7 @@ const TamagotchiSelector = ({
     setCleanliness,
     setGrowth,
     setModelName,
+    setXP,
   } = useTamagotchiContext()
 
   // const [currentIndex, setCurrentIndex] = useState(0)
@@ -77,6 +78,7 @@ const TamagotchiSelector = ({
     setCleanliness(selected.cleanliness)
     setGrowth(selected.growth)
     setModelName(selected.modelName)
+    setXP(selected.xp)
   }
 
   useEffect(() => {

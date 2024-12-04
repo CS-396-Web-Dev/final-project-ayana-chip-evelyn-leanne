@@ -14,7 +14,7 @@ interface StatusBarProps {
 }
 
 const drainRate = 0.1
-const xpRate = 1
+const xpRate = 10
 
 export default function StatusBar({ statType }: StatusBarProps) {
   const {
@@ -24,8 +24,8 @@ export default function StatusBar({ statType }: StatusBarProps) {
     happiness,
     setCleanliness,
     cleanliness,
-    xp,
     setXP,
+    xp,
     growth,
   } = useTamagotchiContext()
 

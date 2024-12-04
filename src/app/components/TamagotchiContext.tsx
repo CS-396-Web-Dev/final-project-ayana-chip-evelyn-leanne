@@ -77,7 +77,7 @@ export default function TamagotchiContextProvider({
 
   useEffect(() => {
     if (xp == 100) {
-      if (modelName !== "Tombstone" && growth !== "Evolved") {
+      if (modelName !== "Tombstone" && growth == "Base") {
         setModelName(modelName + "_Evolved")
       }
 

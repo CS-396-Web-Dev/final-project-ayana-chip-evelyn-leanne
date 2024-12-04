@@ -36,6 +36,7 @@ export const addTamagotchi = (newTamagotchi: Partial<Tamagotchi>): void => {
       happiness: 100,
       cleanliness: 100,
       growth: "Base",
+      xp: 0,
     },
   ]
   localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedTamagotchis))
