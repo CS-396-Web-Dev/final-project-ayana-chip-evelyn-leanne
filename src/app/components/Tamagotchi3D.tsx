@@ -1,7 +1,7 @@
 "use client"
 
 import React, { forwardRef, useImperativeHandle, useRef } from "react"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useThree } from "@react-three/fiber"
 import { useGLTF, useAnimations, OrbitControls } from "@react-three/drei"
 import { useEffect } from "react"
 import * as THREE from "three"
@@ -13,6 +13,8 @@ interface ModelProps {
 }
 
 const Model: React.FC<ModelProps> = ({ url, yPos, playAnimation }) => {
+  const { size } = useThree()
+
   const { scene, animations } = useGLTF(url)
   const groupRef = useRef<THREE.Group>(null)
   const { actions } = useAnimations(animations, groupRef)
@@ -35,8 +37,22 @@ const Model: React.FC<ModelProps> = ({ url, yPos, playAnimation }) => {
     })
   }, [scene, actions, playAnimation])
 
+  useEffect(() => {
+    console.log(size)
+    console.log(groupRef.current?.scale)
+
+    if (groupRef.current) {
+      const scaleFactor = 1 - (675 - size.width) / 675
+      groupRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor)
+
+      const box = new THREE.Box3().setFromObject(groupRef.current)
+      const center = box.getCenter(new THREE.Vector3())
+      groupRef.current.position.set(-center.x, -center.y, -center.z)
+    }
+  }, [size])
+
   return (
-    <group position={[0, yPos, 0]} ref={groupRef}>
+    <group ref={groupRef}>
       <primitive object={scene} />
     </group>
   )
