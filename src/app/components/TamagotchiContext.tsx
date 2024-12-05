@@ -65,15 +65,19 @@ export default function TamagotchiContextProvider({
   const [modelName, setModelName] = useState(initialData.modelName)
   const [xp, setXP] = useState(initialData.xp)
 
+  const killPet = () => {
+    setHappiness(0)
+    setCleanliness(0)
+    setXP(0)
+    setGrowth("Dead")
+    setModelName("Tombstone")
+  }
+
   useEffect(() => {
-    if (hunger == 0) {
-      setHappiness(0)
-      setCleanliness(0)
-      setXP(0)
-      setGrowth("Dead")
-      setModelName("Tombstone")
+    if (hunger == 0 || happiness == 0 || cleanliness == 0) {
+      killPet()
     }
-  }, [hunger])
+  }, [hunger, happiness, cleanliness])
 
   useEffect(() => {
     if (xp == 100) {

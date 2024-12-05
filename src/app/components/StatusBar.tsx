@@ -14,7 +14,7 @@ interface StatusBarProps {
 }
 
 const drainRate = 0.1
-const xpRate = 10
+const xpRate = 2
 
 export default function StatusBar({ statType }: StatusBarProps) {
   const {

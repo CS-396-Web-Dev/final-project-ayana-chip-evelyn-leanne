@@ -21,7 +21,6 @@ const Model: React.FC<ModelProps> = ({ url, playAnimation }) => {
   useEffect(() => {
     if (actions?.Flying_Idle) {
       actions.Flying_Idle.play()
-      // mixer.timeScale = 1
     }
 
     playAnimation((animationName: string) => {

@@ -28,9 +28,9 @@ export default function Home() {
   useEffect(() => {
     let initialized = initializeTamagotchis([
       {
+        id: 1,
         name: "Starter",
         modelName: "Dragon",
-        id: 1,
         hunger: 100,
         happiness: 100,
         cleanliness: 100,
